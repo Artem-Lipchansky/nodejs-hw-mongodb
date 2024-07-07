@@ -37,7 +37,7 @@ export const getContactByIdController = async (req, res, next) => {
   const contact = await getContactById(contactId);
 
   if (!contact) {
-    // 2. Створюємо та налаштовуємо помилку
+    
     next(createHttpError(404, 'Contact not found'));
     return;
   }
