@@ -5,7 +5,7 @@ import router from './routers/index.js';
 import { errorHandler } from './middlewares/errorHandler.js';
 import { notFoundHandler } from './middlewares/notFoundHandler.js';
 import cookieParser from 'cookie-parser';
-import authRouter from './routers/auth.js'; // Імпорт маршрутизатора для аутентифікації
+import authRouter from './routers/auth.js';
 
 import { env } from './utils/env.js';
 
@@ -33,7 +33,7 @@ export const setupServer = () => {
 
   app.use(cookieParser());
 
-  app.use('/auth', authRouter); // Додаємо маршрутизатор для аутентифікації
+  app.use('/auth', authRouter);
 
   app.use(router);
 
