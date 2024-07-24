@@ -5,15 +5,12 @@ import { parseSortParams } from '../utils/parseSortParams.js';
 import { parseFilterParams } from '../utils/parseFilterParams.js';
 import { saveFileToCloudinary } from '../utils/saveFileToCloudinary.js';
 
-
-
-
 export const getContactsController = async (req, res, next) => {
   try {
     const { page, perPage } = parsePaginationParams(req.query);
     const { sortBy, sortOrder } = parseSortParams(req.query);
     const filter = parseFilterParams(req.query);
-    const userId = req.user._id; 
+    const userId = req.user._id;
 
     const contacts = await getAllContacts({
       userId,
@@ -34,11 +31,10 @@ export const getContactsController = async (req, res, next) => {
   }
 };
 
-
 export const getContactByIdController = async (req, res, next) => {
   try {
     const { contactId } = req.params;
-    const userId = req.user._id; 
+    const userId = req.user._id;
 
     const contact = await getContactById({ contactId, userId });
 
@@ -57,19 +53,16 @@ export const getContactByIdController = async (req, res, next) => {
   }
 };
 
-
 export const createContactController = async (req, res, next) => {
   try {
-    const { name, phoneNumber  } = req.body;
-
+    const { name, phoneNumber } = req.body;
 
     if (!name || !phoneNumber) {
       next(createHttpError(400, 'Name and phone number are required'));
       return;
     }
 
-    const userId = req.user._id; 
-
+    const userId = req.user._id;
     const photo = req.file;
 
     let photoUrl;
@@ -77,11 +70,7 @@ export const createContactController = async (req, res, next) => {
       photoUrl = await saveFileToCloudinary(photo);
     }
 
-
-    const newContact = await createContact({ userId,  ...req.body, photo: photoUrl   });
-
-   
-
+    const newContact = await createContact({ userId, ...req.body, photo: photoUrl });
 
     res.status(201).json({
       status: 201,
@@ -92,7 +81,6 @@ export const createContactController = async (req, res, next) => {
     next(err);
   }
 };
-
 
 export const deleteContactController = async (req, res, next) => {
   try {
@@ -111,7 +99,6 @@ export const deleteContactController = async (req, res, next) => {
     next(err);
   }
 };
-
 
 export const patchContactController = async (req, res, next) => {
   try {
@@ -134,7 +121,7 @@ export const patchContactController = async (req, res, next) => {
 
     res.json({
       status: 200,
-      message: 'Contact successfully updated!!',
+      message: 'Contact successfully updated!',
       data: result.contact,
     });
   } catch (err) {
