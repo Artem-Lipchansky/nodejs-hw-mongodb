@@ -1,0 +1,15 @@
+type: object
+required:
+  - status
+  - message
+  - error
+properties:
+  status:
+    type: integer
+    example: 401
+  message:
+    type: string
+    example: Unauthorized
+  error:
+    type: string
+    example: 'You do not have the necessary permissions to access this resource'
