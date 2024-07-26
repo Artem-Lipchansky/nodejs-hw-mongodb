@@ -15,11 +15,11 @@ properties:
   phoneNumber:
     description: "Contact's phoneNumber"
     type: string
-    example: +380000000001
+    example: +380000000003
   email:
     description: "Contact's email"
     type: string
-    example: oleh1@example.com
+    example: artem@example.com
   contactType:
     description: "Contact's type"
     type: string

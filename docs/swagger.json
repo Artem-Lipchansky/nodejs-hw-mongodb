@@ -14,7 +14,7 @@
       "url": "http://localhost:3000"
     },
     {
-      "url": "https://nodejs-hw-mongodb-2-752m.onrender.com"
+      "url": "ttps://nodejs-hw-mongodb-5-vtll.onrender.com"
     }
   ],
   "tags": [
@@ -92,7 +92,7 @@
             "name": "phoneNumber",
             "schema": {
               "type": "string",
-              "example": "+380000000001"
+              "example": "+380000000003"
             }
           },
           {
@@ -100,7 +100,7 @@
             "name": "email",
             "schema": {
               "type": "string",
-              "example": "oleh1@example.com"
+              "example": "artem@example.com"
             }
           },
           {
@@ -231,12 +231,12 @@
                   "phoneNumber": {
                     "description": "Contact's phoneNumber",
                     "type": "string",
-                    "example": 380000000001
+                    "example": 380000000003
                   },
                   "email": {
                     "description": "Contact's email",
                     "type": "string",
-                    "example": "oleh1@example.com"
+                    "example": "artem@example.com"
                   },
                   "contactType": {
                     "description": "Contact's type",
@@ -417,12 +417,12 @@
                   "phoneNumber": {
                     "description": "Contact's phoneNumber",
                     "type": "string",
-                    "example": "+380000000001"
+                    "example": "+380000000003"
                   },
                   "email": {
                     "description": "Contact's email",
                     "type": "string",
-                    "example": "oleh1@example.com"
+                    "example": "artem@example.com"
                   },
                   "contactType": {
                     "description": "Contact's type",
@@ -613,12 +613,12 @@
           "phoneNumber": {
             "description": "Contact's phoneNumber",
             "type": "string",
-            "example": 380000000001
+            "example": 380000000003
           },
           "email": {
             "description": "Contact's email",
             "type": "string",
-            "example": "oleh1@example.com"
+            "example": "artem@example.com"
           },
           "contactType": {
             "description": "Contact's type",
