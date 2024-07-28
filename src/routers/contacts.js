@@ -22,10 +22,20 @@ contactsRouter.get('/', ctrlWrapper(getContactsController));
 
 contactsRouter.get('/:contactId', isValidId, ctrlWrapper(getContactByIdController));
 
-contactsRouter.post('/', upload.single('photo'), validateBody(createContactSchema), ctrlWrapper(createContactController));
+contactsRouter.post('/', upload.single('photo'), validateBody(createContactSchema), (req, res, next) => {
+  if (req.body.userId) {
+    delete req.body.userId;
+  }
+  next();
+}, ctrlWrapper(createContactController));
 
 contactsRouter.delete('/:contactId', isValidId, ctrlWrapper(deleteContactController));
 
-contactsRouter.patch('/:contactId', isValidId, upload.single('photo'), validateBody(updateContactSchema), ctrlWrapper(patchContactController));
+contactsRouter.patch('/:contactId', isValidId, upload.single('photo'), validateBody(updateContactSchema), (req, res, next) => {
+  if (req.body.userId) {
+    delete req.body.userId;
+  }
+  next();
+}, ctrlWrapper(patchContactController));
 
 export default contactsRouter;
