@@ -1,9 +1,13 @@
-import { getAllContacts, getContactById, createContact, deleteContact, updateContact } from '../services/contacts.js';
+import { getAllContacts, getContactById, createContact, deleteContact } from '../services/contacts.js';
 import createHttpError from 'http-errors';
 import { parsePaginationParams } from '../utils/parsePaginationParams.js';
 import { parseSortParams } from '../utils/parseSortParams.js';
 import { parseFilterParams } from '../utils/parseFilterParams.js';
 import { saveFileToCloudinary } from '../utils/saveFileToCloudinary.js';
+import Contact from '../db/models/contact.js';
+
+
+
 
 export const getContactsController = async (req, res, next) => {
   try {
@@ -103,28 +107,21 @@ export const deleteContactController = async (req, res, next) => {
 export const patchContactController = async (req, res, next) => {
   try {
     const { contactId } = req.params;
-    const userId = req.user._id;
+    const { name, phoneNumber, email, contactType, isFavourite } = req.body;
+    const photo = req.file ? req.file.path : null;
 
-    const photo = req.file;
+    const updatedContact = await Contact.findByIdAndUpdate(
+      contactId,
+      { name, phoneNumber, email, contactType, isFavourite, photo },
+      { new: true }
+    );
 
-    let photoUrl;
-    if (photo) {
-      photoUrl = await saveFileToCloudinary(photo);
+    if (!updatedContact) {
+      return res.status(404).json({ message: 'Contact not found' });
     }
 
-    const result = await updateContact({ contactId, userId, payload: { ...req.body, photo: photoUrl } });
-
-    if (!result) {
-      next(createHttpError(404, 'Contact not found', { message: 'Contact not found' }));
-      return;
-    }
-
-    res.json({
-      status: 200,
-      message: 'Contact successfully updated!',
-      data: result.contact,
-    });
-  } catch (err) {
-    next(err);
+    res.status(200).json(updatedContact);
+  } catch (error) {
+    next(error);
   }
 };
