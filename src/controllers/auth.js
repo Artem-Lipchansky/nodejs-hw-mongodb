@@ -1,10 +1,5 @@
-import { registerUser } from '../services/auth.js';
-import { loginUser } from '../services/auth.js';
+import { registerUser, loginUser, logoutUser, refreshUsersSession, requestResetToken, resetPassword } from '../services/auth.js';
 import { THIRTY_DAY } from '../index.js';
-import { logoutUser } from '../services/auth.js';
-import { refreshUsersSession } from '../services/auth.js';
-import { requestResetToken } from '../services/auth.js';
-import { resetPassword } from '../services/auth.js';
 
 export const registerUserController = async (req, res) => {
   const user = await registerUser(req.body);
@@ -36,7 +31,6 @@ export const loginUserController = async (req, res) => {
     },
   });
 };
-
 
 export const logoutUserController = async (req, res) => {
   if (req.cookies.sessionId) {
