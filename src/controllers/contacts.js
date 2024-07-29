@@ -6,9 +6,6 @@ import { parseFilterParams } from '../utils/parseFilterParams.js';
 import { saveFileToCloudinary } from '../utils/saveFileToCloudinary.js';
 import Contact from '../db/models/contact.js';
 
-
-
-
 export const getContactsController = async (req, res, next) => {
   try {
     const { page, perPage } = parsePaginationParams(req.query);
@@ -49,7 +46,7 @@ export const getContactByIdController = async (req, res, next) => {
 
     res.json({
       status: 200,
-      message: `Contact successfully found id ${contactId}!`,
+      message: `Contact successfully found with id ${contactId}!`,
       data: contact,
     });
   } catch (err) {
@@ -125,3 +122,4 @@ export const patchContactController = async (req, res, next) => {
     next(error);
   }
 };
+
