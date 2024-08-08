@@ -14,7 +14,7 @@ parameters:
     description: The ID of the contact to update
 requestBody:
   content:
-    application/json:
+    multipart/form-data:
       schema:
         type: object
         properties:
@@ -35,13 +35,13 @@ requestBody:
             type: string
             enum: ['work', 'home', 'personal']
           isFavourite:
-            description: 'is a favorite contact'
+            description: 'Is a favorite contact'
             type: boolean
             example: false
           photo:
-            description: "Link to contact's photo"
+            description: "Contact's photo"
             type: string
-            example: 'https://res.cloudinary.com/uqwgdu/image/upload/image.png'
+            format: binary
 responses:
   '200':
     description: Successfully updated the contact
@@ -61,18 +61,19 @@ responses:
               type: string
               example: Successfully updated the contact!
             data:
-              $ref: ..\..\..\components\schemas\contacts.yaml
+              $ref: ../../../components/schemas/contacts.yaml
   '401':
-    $ref: ..\..\..\components\responses\401.yaml
+    $ref: ../../../components/responses/401.yaml
   '404':
     description: Contact not found
     content:
       application/json:
         schema:
-          $ref: ..\..\..\components\schemas\error.yaml
+          $ref: ../../../components/schemas/error.yaml
   '400':
     description: Bad Request
     content:
       application/json:
         schema:
-          $ref: ..\..\..\components\schemas\error.yaml
+          $ref: ../../../components/schemas/error.yaml
+
