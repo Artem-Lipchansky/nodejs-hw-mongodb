@@ -28,21 +28,7 @@ parameters:
       type: string
       enum: ['asc', 'desc']
       example: 'asc'
-  - in: query
-    name: name
-    schema:
-      type: string
-      example: 'John Doe'
-  - in: query
-    name: phoneNumber
-    schema:
-      type: string
-      example: '+380000000003'
-  - in: query
-    name: email
-    schema:
-      type: string
-      example: 'artem@example.com'
+      
   - in: query
     name: contactType
     schema:
