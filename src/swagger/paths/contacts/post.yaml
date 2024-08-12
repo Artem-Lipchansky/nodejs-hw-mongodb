@@ -13,7 +13,6 @@ requestBody:
         required:
           - name
           - phoneNumber
-          - userId
         properties:
           name:
             description: "Contact's name"
@@ -40,8 +39,8 @@ requestBody:
             type: string
             format: binary
 responses:
-  '200':
-    description: Successfully updated the contact
+  '201':
+    description: Successfully created the contact
     content:
       application/json:
         schema:
@@ -53,10 +52,10 @@ responses:
           properties:
             status:
               type: integer
-              example: 200
+              example: 201
             message:
               type: string
-              example: Successfully updated the contact!
+              example: Successfully created the contact!
             data:
               $ref: '../../components/schemas/contacts.yaml'
   '401':
