@@ -1,4 +1,9 @@
-import { getAllContacts, getContactById, createContact, deleteContact } from '../services/contacts.js';
+import {
+  getAllContacts,
+  getContactById,
+  createContact,
+  deleteContact,
+} from '../services/contacts.js';
 import createHttpError from 'http-errors';
 import { parsePaginationParams } from '../utils/parsePaginationParams.js';
 import { parseSortParams } from '../utils/parseSortParams.js';
@@ -71,11 +76,15 @@ export const createContactController = async (req, res, next) => {
       photoUrl = await saveFileToCloudinary(photo);
     }
 
-    const newContact = await createContact({ userId, ...req.body, photo: photoUrl });
+    const newContact = await createContact({
+      userId,
+      ...req.body,
+      photo: photoUrl,
+    });
 
     res.status(201).json({
       status: 201,
-      message: 'Contact successfully created!',
+      message: 'Successfully created the contact!',
       data: newContact,
     });
   } catch (err) {
@@ -105,7 +114,7 @@ export const patchContactController = async (req, res, next) => {
   try {
     const { contactId } = req.params;
     const { name, phoneNumber, email, contactType, isFavourite } = req.body;
-    const photo = req.file ? req.file.path : null;
+    const photo = req.file ? await saveFileToCloudinary(req.file) : null;
 
     const updatedContact = await Contact.findByIdAndUpdate(
       contactId,
@@ -117,7 +126,11 @@ export const patchContactController = async (req, res, next) => {
       return res.status(404).json({ message: 'Contact not found' });
     }
 
-    res.status(200).json(updatedContact);
+    res.status(200).json({
+      status: 200,
+      message: 'Contact successfully updated!',
+      data: updatedContact,
+    });
   } catch (error) {
     next(error);
   }

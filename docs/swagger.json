@@ -195,8 +195,7 @@
                 "type": "object",
                 "required": [
                   "name",
-                  "phoneNumber",
-                  "userId"
+                  "phoneNumber"
                 ],
                 "properties": {
                   "name": {
@@ -239,8 +238,8 @@
           }
         },
         "responses": {
-          "200": {
-            "description": "Successfully updated the contact",
+          "201": {
+            "description": "Successfully created the contact",
             "content": {
               "application/json": {
                 "schema": {
@@ -253,11 +252,11 @@
                   "properties": {
                     "status": {
                       "type": "integer",
-                      "example": 200
+                      "example": 201
                     },
                     "message": {
                       "type": "string",
-                      "example": "Successfully updated the contact!"
+                      "example": "Successfully created the contact!"
                     },
                     "data": {
                       "$ref": "#/components/schemas/contacts"
